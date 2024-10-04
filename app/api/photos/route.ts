@@ -21,7 +21,13 @@ export async function GET() {
   }
 
   const data = await response.json();
-  const photos = data.files.map((photo: any) => {
+  interface Photo {
+    id: string;
+    name: string;
+    webContentLink: string;
+  }
+
+  const photos = data.files.map((photo: Photo) => {
     const fileId = photo.webContentLink.split("id=")[1].split("&")[0];
     return `https://lh3.googleusercontent.com/d/${fileId}=w3000`;
   });
