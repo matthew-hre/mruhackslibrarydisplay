@@ -11,7 +11,7 @@ export function Socials() {
         </div>
         <div className="flex flex-row gap-2 items-center">
           <FaDiscord size={24} />
-          <span className="text-semibold text-xl">discord.gg/mruhacks</span>
+          <span className="text-semibold text-xl">discord.gg/tRtW5phPQv</span>
         </div>
       </div>
     </div>

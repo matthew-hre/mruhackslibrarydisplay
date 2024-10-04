@@ -25,7 +25,7 @@ export function Countdown() {
   );
 
   return (
-    <div className="rounded-lg bg-white p-8 pl-4 flex-1 flex-col flex items-center justify-center gap-4">
+    <div className="rounded-lg bg-white p-8 flex-1 flex-col flex items-center justify-center gap-4">
       <div className="flex flex-col">
         <h3 className="text-lg text-gray-500">
           {time.toLocaleDateString([], {
@@ -46,7 +46,7 @@ export function Countdown() {
             .replace("p.m.", "PM")}
         </h2>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center">
         <h2 className="text-xl text-gray-500">Hacking Ends In</h2>
         {hoursLeft < 0 ? (
           <h2 className="text-3xl font-bold text-black">Hacking has ended!</h2>
