@@ -24,6 +24,17 @@ export function Countdown() {
     "0"
   );
 
+  // countdown till hacking starts (oct 5th, 11am)
+  const startTime = new Date("2024-10-05T10:30:00");
+  const hackingTimeLeft = startTime.getTime() - time.getTime();
+  const hackingHoursLeft = Math.floor(hackingTimeLeft / (1000 * 60 * 60));
+  const hackingMinutesLeft = String(
+    Math.floor((hackingTimeLeft / (1000 * 60)) % 60)
+  ).padStart(2, "0");
+  const hackingSecondsLeft = String(
+    Math.floor((hackingTimeLeft / 1000) % 60)
+  ).padStart(2, "0");
+
   return (
     <div className="rounded-lg bg-white p-8 flex-1 flex-col flex items-center justify-center gap-4">
       <div className="flex flex-col">
@@ -47,13 +58,26 @@ export function Countdown() {
         </h2>
       </div>
       <div className="flex flex-col items-center">
-        <h2 className="text-xl text-gray-500">Hacking Ends In</h2>
-        {hoursLeft < 0 ? (
-          <h2 className="text-3xl font-bold text-black">Hacking has ended!</h2>
+        {hoursLeft >= 0 ? (
+          <>
+            <h2 className="text-xl text-gray-500">Hacking Starts In</h2>
+            <h2 className="text-3xl font-bold text-black">
+              {hackingHoursLeft}:{hackingMinutesLeft}:{hackingSecondsLeft}
+            </h2>
+          </>
         ) : (
-          <h2 className="text-3xl font-bold text-black">
-            {hoursLeft}:{minutesLeft}:{secondsLeft}
-          </h2>
+          <>
+            <h2 className="text-xl text-gray-500">Hacking Ends In</h2>
+            {hoursLeft < 0 ? (
+              <h2 className="text-3xl font-bold text-black">
+                Hacking has ended!
+              </h2>
+            ) : (
+              <h2 className="text-3xl font-bold text-black">
+                {hoursLeft}:{minutesLeft}:{secondsLeft}
+              </h2>
+            )}
+          </>
         )}
       </div>
     </div>
