@@ -36,7 +36,9 @@ export default async function Home() {
           } else {
             greeting = "Good Night Hackers!";
           }
-          return <h1 className="text-2xl font-bold text-white">{greeting}</h1>;
+          return (
+            <h1 className="text-[2rem] font-bold text-white">{greeting}</h1>
+          );
         })()}
         <Countdown />
         <Socials />
