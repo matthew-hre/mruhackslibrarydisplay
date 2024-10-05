@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const folderId = process.env.GOOGLE_FOLDER_ID;
   const apiKey = process.env.GOOGLE_DRIVE_KEY;

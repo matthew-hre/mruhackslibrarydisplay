@@ -72,8 +72,8 @@ export function Schedule() {
     },
     {
       name: "Lunch",
-      startTime: new Date("2024-10-05T12:00:00"),
-      endTime: new Date("2024-10-05T13:00:00"),
+      startTime: new Date("2024-10-06T12:00:00"),
+      endTime: new Date("2024-10-06T13:00:00"),
       location: "Ideas Lounge",
     },
     {
