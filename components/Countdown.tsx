@@ -58,7 +58,7 @@ export function Countdown() {
         </h2>
       </div>
       <div className="flex flex-col items-center">
-        {hoursLeft >= 0 ? (
+        {startTime > time ? (
           <>
             <h2 className="text-xl text-gray-500">Hacking Starts In</h2>
             <h2 className="text-3xl font-bold text-black">
