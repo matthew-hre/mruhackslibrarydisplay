@@ -41,15 +41,21 @@ export function Schedule() {
       location: "Ideas Lounge",
     },
     {
-      name: "Movie Night",
-      startTime: new Date("2024-10-05T24:00:00"),
-      endTime: new Date("2024-10-06T02:00:00"),
+      name: "Mini-Competition",
+      startTime: new Date("2024-10-05T20:00:00"),
+      endTime: new Date("2024-10-05T21:00:00"),
+      location: "Ideas Lounge",
+    },
+    {
+      name: "Hackathon Movie Screening",
+      startTime: new Date("2024-10-05T22:00:00"),
+      endTime: new Date("2024-10-06T01:00:00"),
       location: "Visualization Classroom",
     },
     {
-      name: "Smash Bros Tournament",
-      startTime: new Date("2024-10-05T24:00:00"),
-      endTime: new Date("2024-10-06T02:00:00"),
+      name: "Video Games Night Session",
+      startTime: new Date("2024-10-05T22:00:00"),
+      endTime: new Date("2024-10-06T01:00:00"),
       location: "Ideas Lounge",
     },
     {
@@ -65,9 +71,15 @@ export function Schedule() {
       location: "First Floor",
     },
     {
+      name: "Lunch",
+      startTime: new Date("2024-10-05T12:00:00"),
+      endTime: new Date("2024-10-05T13:00:00"),
+      location: "Ideas Lounge",
+    },
+    {
       name: "Closing Ceremony",
-      startTime: new Date("2024-10-05T21:00:00"),
-      endTime: new Date("2024-10-05T22:00:00"),
+      startTime: new Date("2024-10-05T15:00:00"),
+      endTime: new Date("2024-10-05T15:30:00"),
       location: "Main Stage",
     },
   ];
