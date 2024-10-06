@@ -77,9 +77,21 @@ export function Schedule() {
       location: "Ideas Lounge",
     },
     {
+      name: "Judging Tables Released",
+      startTime: new Date("2024-10-06T12:45:00"),
+      endTime: new Date("2024-10-06T12:50:00"),
+      location: "Ideas Lounge",
+    },
+    {
+      name: "Judging",
+      startTime: new Date("2024-10-06T13:00:00"),
+      endTime: new Date("2024-10-06T14:30:00"),
+      location: "Ideas Lounge",
+    },
+    {
       name: "Closing Ceremony",
-      startTime: new Date("2024-10-05T15:00:00"),
-      endTime: new Date("2024-10-05T15:30:00"),
+      startTime: new Date("2024-10-06T15:00:00"),
+      endTime: new Date("2024-10-06T15:30:00"),
       location: "Main Stage",
     },
   ];
