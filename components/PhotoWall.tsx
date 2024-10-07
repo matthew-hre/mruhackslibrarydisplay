@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Autoplay from "embla-carousel-autoplay";
@@ -9,10 +10,15 @@ import {
 } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 
+import config from "@/photowall.config";
+
 export function PhotoWall() {
   const [images, setImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const photoWallRefreshRate = config.photowall.refreshRate || 30 * 60 * 1000;
+  const photoWallRotationRate = config.photowall.rotationRate || 10000;
 
   const fetchPhotos = async () => {
     try {
@@ -34,8 +40,9 @@ export function PhotoWall() {
 
   useEffect(() => {
     fetchPhotos();
-    const interval = setInterval(fetchPhotos, 30 * 60 * 1000); // Fetch every 30 minutes
+    const interval = setInterval(fetchPhotos, photoWallRefreshRate); // Fetch every 30 minutes
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) {
@@ -68,7 +75,7 @@ export function PhotoWall() {
       <Carousel
         plugins={[
           Autoplay({
-            delay: 10000,
+            delay: photoWallRotationRate,
           }),
         ]}
         className="h-full"
@@ -77,7 +84,11 @@ export function PhotoWall() {
         <CarouselContent className="h-full">
           {images?.map((src, index) => (
             <CarouselItem key={index} className="w-full h-full">
-              <img className="w-full h-full object-cover" src={src}></img>
+              <img
+                className="w-full h-full object-cover"
+                src={src}
+                alt="A photo from MRUHacks"
+              ></img>
             </CarouselItem>
           ))}
         </CarouselContent>

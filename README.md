@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MRUHacks Library Display
 
-## Getting Started
+This is a web app that displays a photo wall, calendar, countdown, and social media QR codes for the MRUHacks 2024 hackathon. The photo wall is populated with photos from a Google Drive folder, and the calendar is populated with events from the `photowall.config.ts` file.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Generate a Google Drive API key and add it to your .env.local
+2. Create a Google Drive folder for your photos. Make sure the folder is **Public: Anyone can view**, and is in your personal drive. This will not work if the folder is in a shared drive, or if you're not the owner.
+3. Grab the Google Drive folder id. The folder id is the last part of the URL when you're viewing the folder in Google Drive. For example, if the URL is `https://drive.google.com/drive/u/0/folders/1X2Y3Z4A5B6C7D8E9F0G`, the folder id is `1X2Y3Z4A5B6C7D8E9F0G`.
+4. Add the folder id to your .env.local
+5. Run `npm install` to install dependencies
+6. Run `npm run dev` to start the development server
+7. Share the Google Drive with whoever will be uploading photos
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All configuration is done through the `photowall.config.ts` file. The following options are available:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Calendar
 
-## Learn More
+Calendar events are displayed on the home page. You can add events to the calendar by adding them to the `calendar` array in the config file. Each event should have the following properties:
 
-To learn more about Next.js, take a look at the following resources:
+- `title`: The title of the event
+- `startDateTime`: The starting date and time of the event in ISO 8601 format
+- `endDateTime`: The ending date and time of the event in ISO 8601 format
+- `location`: The location of the event
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Photos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Photos are displayed on the photo wall page. You can configure the photo wall by setting the following properties in the config file:
 
-## Deploy on Vercel
+- `refreshRate`: The interval in milliseconds at which the photos are refreshed
+- `rotationRate`: The interval in milliseconds at which the photos are rotated
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The Google Drive data should be configured in the `.env.local` file.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Countdown
+
+The countdown is displayed on the home page. You can configure the countdown by setting the following properties in the config file:
+
+- `hackingStartTime`: The starting date and time of the hackathon in ISO 8601 format
+- `hackingEndTime`: The ending date and time of the hackathon in ISO 8601 format
+
+### Socials
+
+Social media QR codes are displayed on the home page. You can configure the social media links by adding them to the `socials` array in the config file. Each social media link should have the following properties:
+
+- `name`: The name of the social media platform
+- `title`: The title of the social media platform, shown on the QR code
+- `qrCode`: The path to the QR code image, relative to the `public` directory

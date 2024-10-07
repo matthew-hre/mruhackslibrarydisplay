@@ -2,99 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+import config from "@/photowall.config";
+
 export function Schedule() {
-  const events = [
-    {
-      name: "Test",
-      startTime: new Date("2024-10-03T07:00:00"),
-      endTime: new Date("2024-10-03T10:19:00"),
-      location: "Test Location",
-    },
-    {
-      name: "Check-In",
-      startTime: new Date("2024-10-05T08:30:00"),
-      endTime: new Date("2024-10-05T10:00:00"),
-      location: "MRUHacks Help Desk",
-    },
-    {
-      name: "Opening Ceremony",
-      startTime: new Date("2024-10-05T10:00:00"),
-      endTime: new Date("2024-10-05T10:30:00"),
-      location: "Ideas Lounge",
-    },
-    {
-      name: "Hacking Begins",
-      startTime: new Date("2024-10-05T10:30:00"),
-      endTime: new Date("2024-10-05T10:45:00"),
-      location: "First Floor",
-    },
-    {
-      name: "Lunch",
-      startTime: new Date("2024-10-05T12:00:00"),
-      endTime: new Date("2024-10-05T13:00:00"),
-      location: "The Atrium",
-    },
-    {
-      name: "Dinner",
-      startTime: new Date("2024-10-05T19:45:00"),
-      endTime: new Date("2024-10-05T21:00:00"),
-      location: "Ideas Lounge",
-    },
-    {
-      name: "Mini-Competition",
-      startTime: new Date("2024-10-05T20:00:00"),
-      endTime: new Date("2024-10-05T21:00:00"),
-      location: "Ideas Lounge",
-    },
-    {
-      name: "Hackathon Movie Screening",
-      startTime: new Date("2024-10-05T22:00:00"),
-      endTime: new Date("2024-10-06T01:00:00"),
-      location: "Visualization Classroom",
-    },
-    {
-      name: "Video Games Night Session",
-      startTime: new Date("2024-10-05T22:00:00"),
-      endTime: new Date("2024-10-06T01:00:00"),
-      location: "Ideas Lounge",
-    },
-    {
-      name: "Breakfast",
-      startTime: new Date("2024-10-06T09:00:00"),
-      endTime: new Date("2024-10-06T10:00:00"),
-      location: "Ideas Lounge",
-    },
-    {
-      name: "Hacking Ends",
-      startTime: new Date("2024-10-06T11:00:00"),
-      endTime: new Date("2024-10-06T11:00:00"),
-      location: "First Floor",
-    },
-    {
-      name: "Lunch",
-      startTime: new Date("2024-10-06T12:00:00"),
-      endTime: new Date("2024-10-06T13:00:00"),
-      location: "Ideas Lounge",
-    },
-    {
-      name: "Judging Tables Released",
-      startTime: new Date("2024-10-06T12:45:00"),
-      endTime: new Date("2024-10-06T12:50:00"),
-      location: "Ideas Lounge",
-    },
-    {
-      name: "Judging",
-      startTime: new Date("2024-10-06T13:00:00"),
-      endTime: new Date("2024-10-06T14:30:00"),
-      location: "Ideas Lounge",
-    },
-    {
-      name: "Closing Ceremony",
-      startTime: new Date("2024-10-06T15:00:00"),
-      endTime: new Date("2024-10-06T15:30:00"),
-      location: "Main Stage",
-    },
-  ];
+  const events = config.calendar.events;
 
   return (
     <div className="flex flex-col flex-[1] bg-white rounded-lg overflow-hidden h-full max-h-screen relative">
@@ -106,9 +17,9 @@ export function Schedule() {
           {events.map((event, index) => (
             <Event
               key={index}
-              title={event.name}
-              startTime={event.startTime}
-              endTime={event.endTime}
+              title={event.title}
+              startTime={event.startDateTime}
+              endTime={event.endDateTime}
               location={event.location}
             />
           ))}
@@ -126,11 +37,14 @@ function Event({
   location,
 }: {
   title: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
   location: string;
 }) {
   const [currentTime, setCurrentTime] = useState(new Date());
+
+  const startDateTime = new Date(startTime);
+  const endDateTime = new Date(endTime);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -140,9 +54,10 @@ function Event({
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
 
-  const isCurrentEvent = currentTime >= startTime && currentTime <= endTime;
+  const isCurrentEvent =
+    currentTime >= startDateTime && currentTime <= endDateTime;
 
-  if (endTime < currentTime) {
+  if (endDateTime < currentTime) {
     return null;
   }
 
@@ -163,7 +78,7 @@ function Event({
           {title}
         </span>
         <span className="text-gray-500 w-max">
-          {startTime
+          {startDateTime
             .toLocaleTimeString([], {
               hour: "numeric",
               minute: "2-digit",
